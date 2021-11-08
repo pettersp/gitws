@@ -5,6 +5,10 @@ on:
     branches: [ develop ]
   pull_request:
     branches: [ develop ]
+  #schedule:
+  # # This example triggers the workflow every day at 5:30 and 17:30 UTC:
+  # # * is a special character in YAML so you have to quote this string
+  #  - cron:  '30 5,17 * * *'
 
 jobs:
   build:
@@ -17,9 +21,12 @@ jobs:
           node-version: '14.x'
       - name: Install dependencies
         run: npm ci
-      - name: Build
-        run: npm run build 
-      # Step 3 - Add tests and linting here
+      - name: Run typescript lint and format check
+        run: npm run lint:ts
+      - name: Run styles lint and format check
+        run: npm run lint:css
+      #- name: Run tests
+      #  run: npm test
   deploy:
     needs: build
     runs-on: ubuntu-latest
@@ -31,4 +38,3 @@ jobs:
           node-version: '14.x'
       - name: Install dependencies
         run: npm ci
-      # Step 2: Add deploy to Github pages here! Hot tip - The solution is in the Readme
