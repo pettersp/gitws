@@ -45,12 +45,12 @@ jobs:
       #    not-a-secret: Eurovision
       - name: Build
         run: npm run build
-      #- name: Deploy 🚀
-      #  if: github.ref == 'refs/heads/develop'
-      #  uses: JamesIves/github-pages-deploy-action@4.1.4
-      #  with:
-      #    branch: gh-pages
-      #    folder: dist
+      - name: Deploy 🚀
+        if: github.ref == 'refs/heads/develop'
+        uses: JamesIves/github-pages-deploy-action@4.1.4
+        with:
+          branch: gh-pages
+          folder: dist
   #security:
   #  needs: deploy
   #  runs-on: ubuntu-latest
